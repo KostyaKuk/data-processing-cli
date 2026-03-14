@@ -10,6 +10,6 @@ export function setCurrentDit(newDir){
     currentDir = newDir;
 }
 
-export function resolvePath(pathInput = ''){
+export function resolvePath(pathInput = '.'){
     return path.resolve(currentDir, pathInput)
 }

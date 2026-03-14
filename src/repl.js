@@ -1,6 +1,6 @@
 import readline from 'node:readline';
 import { PINK, RESET } from './utils/colors.js';
-import { getCurrentDir } from './utils/pathResolver.js';
+import { cd, ls, up } from './navigation.js';
 
 export function startRepl() {
   const rl = readline.createInterface({
@@ -14,15 +14,33 @@ export function startRepl() {
   rl.on('line', (input) => {
     const line = input.trim();
 
-    if (line === '.exit' || line === 'exit') {
-      rl.close();
+    if (!line) {
+      rl.prompt();
       return;
     }
 
-    if (line.length > 0) {
-      console.log('good command');
-    }
+    const [command, ...args] = line.split(/\s+/);
+    switch (command.toLowerCase()) {
+      case '.exit':
+      case 'exit':
+        rl.close();
+        return;
 
+      case 'up':
+        up();
+        break;
+
+      case 'cd':
+        cd(args);
+        break;
+
+      case 'ls':
+        ls();
+        break;
+
+      default:
+        console.log(`Unknown command: ${command}`);
+    }
     rl.prompt();
   });
 
