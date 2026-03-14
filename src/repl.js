@@ -1,6 +1,7 @@
 import readline from 'node:readline';
 import { PINK, RESET } from './utils/colors.js';
 import { cd, ls, up } from './navigation.js';
+import { csvToJson } from './workers/ csvToJson.js';
 
 export function startRepl() {
   const rl = readline.createInterface({
@@ -11,7 +12,7 @@ export function startRepl() {
 
   rl.prompt();
 
-  rl.on('line', (input) => {
+  rl.on('line', async (input) => {
     const line = input.trim();
 
     if (!line) {
@@ -36,6 +37,10 @@ export function startRepl() {
 
       case 'ls':
         ls();
+        break;
+
+      case 'csv-to-json':
+        await csvToJson(args);
         break;
 
       default:
