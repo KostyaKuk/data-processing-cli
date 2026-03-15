@@ -6,6 +6,8 @@ import { jsonToCsv } from './workers/jsonToCsv.js';
 import { count } from './commands/count.js';
 import { hash } from './commands/hash.js';
 import { hashCompare } from './commands/hashCompare.js';
+import { encrypt } from './commands/encrypt.js';
+import { decrypt } from './commands/decrypt.js';
 
 export function startRepl() {
   const rl = readline.createInterface({
@@ -61,6 +63,14 @@ export function startRepl() {
 
       case 'hash-compare':
         await hashCompare(args);
+        break;
+
+      case 'encrypt':
+        await encrypt(args);
+        break;
+
+      case 'decrypt':
+        await decrypt(args);
         break;
 
       default:
