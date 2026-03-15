@@ -4,6 +4,8 @@ import { cd, ls, up } from './navigation.js';
 import { csvToJson } from './workers/csvToJson.js';
 import { jsonToCsv } from './workers/jsonToCsv.js';
 import { count } from './commands/count.js';
+import { hash } from './commands/hash.js';
+import { hashCompare } from './commands/hashCompare.js';
 
 export function startRepl() {
   const rl = readline.createInterface({
@@ -51,6 +53,14 @@ export function startRepl() {
 
       case 'count':
         await count(args);
+        break;
+
+      case 'hash':
+        await hash(args);
+        break;
+
+      case 'hash-compare':
+        await hashCompare(args);
         break;
 
       default:
