@@ -1,5 +1,5 @@
 import readline from 'node:readline';
-import { PINK, RESET } from './utils/colors.js';
+import { BLUECOLOR, PINK, RESET } from './utils/colors.js';
 import { cd, ls, up } from './navigation.js';
 import { csvToJson } from './workers/csvToJson.js';
 import { jsonToCsv } from './workers/jsonToCsv.js';
@@ -8,6 +8,7 @@ import { hash } from './commands/hash.js';
 import { hashCompare } from './commands/hashCompare.js';
 import { encrypt } from './commands/encrypt.js';
 import { decrypt } from './commands/decrypt.js';
+import { getCurrentDir } from './utils/pathResolver.js';
 
 export function startRepl() {
   const rl = readline.createInterface({
@@ -76,16 +77,20 @@ export function startRepl() {
       default:
         console.log(`Unknown command: ${command}`);
     }
+
+    showCurrentDirectory()
     rl.prompt();
   });
 
+    function showCurrentDirectory() {
+    console.log(`\n${BLUECOLOR} ${getCurrentDir()}${RESET}`);
+  }
+
   rl.on('SIGINT', () => {
-    console.log('\n^C');
     rl.close();
   });
 
   rl.on('close', () => {
-    console.log('\n^C');
     console.log(`\n${PINK}Thank you for using Data Processing CLI!${RESET}`);
     process.exit(0);
   });
