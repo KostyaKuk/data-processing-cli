@@ -28,7 +28,6 @@ export async function csvToJson(args) {
     const writeStream = fs.createWriteStream(outputPath, { encoding: 'utf8' });
 
     const transformStream = new Transform({
-      encoding: 'utf8',
       objectMode: true, 
       construct(callback) {
         this.headers = null;

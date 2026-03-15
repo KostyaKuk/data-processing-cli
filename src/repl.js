@@ -1,7 +1,8 @@
 import readline from 'node:readline';
 import { PINK, RESET } from './utils/colors.js';
 import { cd, ls, up } from './navigation.js';
-import { csvToJson } from './workers/ csvToJson.js';
+import { csvToJson } from './workers/csvToJson.js';
+import { jsonToCsv } from './workers/jsonToCsv.js';
 
 export function startRepl() {
   const rl = readline.createInterface({
@@ -42,6 +43,10 @@ export function startRepl() {
       case 'csv-to-json':
         await csvToJson(args);
         break;
+
+      case 'json-to-csv':
+        await jsonToCsv(args)
+        break
 
       default:
         console.log(`Unknown command: ${command}`);
