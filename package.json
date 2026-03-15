@@ -1,0 +1,24 @@
+{
+  "name": "data-processing-cli",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/KostyaKuk/data-processing-cli#readme",
+  "bugs": {
+    "url": "https://github.com/KostyaKuk/data-processing-cli/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KostyaKuk/data-processing-cli.git"
+  },
+  "license": "ISC",
+  "author": "Kukushkin K",
+  "type": "module",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/main.js"
+  },
+  "devDependencies": {
+    "@types/node": "^25.5.0"
+  }
+}
